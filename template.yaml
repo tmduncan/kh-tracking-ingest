@@ -73,7 +73,7 @@ Resources:
         KinesisStreamARN:  !GetAtt KinesisStream.Arn
         RoleARN: !GetAtt DeliveryStreamRole.Arn
       ExtendedS3DestinationConfiguration:
-        Prefix: !Sub "${ApiStageName}/{FirehoseS3Prefix}"
+        Prefix: !Sub "${ApiStageName}/${FirehoseS3Prefix}/"
         BucketARN: !GetAtt DeliveryBucket.Arn
         BufferingHints:
           IntervalInSeconds: !Ref FirehoseBufferingInterval
