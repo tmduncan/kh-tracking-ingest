@@ -12,7 +12,7 @@ Parameters:
     Default: 1
   FirehoseS3Prefix:
     Type: String
-    Default: !Sub "${ApiStageName}/tracking"
+    Default: "tracking"
     Description: "The S3 Key prefix for Kinesis Firehose."
   FirehoseCompressionFormat:
     Type: String
@@ -73,7 +73,7 @@ Resources:
         KinesisStreamARN:  !GetAtt KinesisStream.Arn
         RoleARN: !GetAtt DeliveryStreamRole.Arn
       ExtendedS3DestinationConfiguration:
-        Prefix: !Ref FirehoseS3Prefix
+        Prefix: !Sub "${ApiStageName}/{FirehoseS3Prefix}"
         BucketARN: !GetAtt DeliveryBucket.Arn
         BufferingHints:
           IntervalInSeconds: !Ref FirehoseBufferingInterval
